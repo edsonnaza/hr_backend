@@ -1,14 +1,20 @@
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
-const { DB_USER, DB_PASSWORD, DB_HOST,DB_NAME } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST,DB_NAME,DB_DEPLOY } = process.env;
 const UserModel = require('./models/auth/User');
  const sequelize = new Sequelize(
-    //'postgres://postgres:1234@localhost:5432/rickandmorty',
-    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+     
+   // `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+   DB_DEPLOY,
    { logging: false, 
      native: false,
      alter: true,
-     force:true
+     force:true,
+     dialectOptions: {
+        ssl:{
+            require:true,
+        },
+     },
    }
 );
 
