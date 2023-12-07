@@ -9,7 +9,7 @@ const UserModel = require('./models/auth/User');
    { logging: false, 
      native: false,
      alter: true,
-     force:true,
+     force:false,
      dialectOptions: {
         ssl:{
             require:true,
@@ -20,19 +20,19 @@ const UserModel = require('./models/auth/User');
 
  
  
- UserModel(sequelize);
+UserModel(sequelize);
 //
 
 //
 
  
 // ¡Relaciona tus modelos aquí abajo!
-// const { User, Favorite } = sequelize.models;
+ const { User} = sequelize.models;
 // User.belongsToMany(Favorite, {through:'user_favorite'});
 // Favorite.belongsToMany(User, {through:'user_favorite'});
 
 module.exports = {
-   // User,
+    User,
   // Favorite,
    conn: sequelize,
 };

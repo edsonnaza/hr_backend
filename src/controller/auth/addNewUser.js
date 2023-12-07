@@ -1,9 +1,9 @@
 const {User} =require('../../DB_connection');
 const bcrypt = require('bcrypt');
 
-const postUser = async (req, res)=> {
+const addNewUser = async (req, res)=> {
     const { email, password } = req.body;
-    
+   // return res.send(email);
   
     if (!email || !password) {
       return res.status(400).send(`Faltan datos, email: ${req.body.email} o password:${password}`); 
@@ -27,4 +27,4 @@ const postUser = async (req, res)=> {
     }
   }
   
-  module.exports = { postUser };
+  module.exports = { addNewUser };

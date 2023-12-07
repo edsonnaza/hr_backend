@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
     const { email, password } = req.query;
      
     if (!email || !password) {
-      return res.status(400).send(`Please provide and email:${email} and password.`);
+      return res.status(400).json(`Please provide and email:${email} and password.`);
     }
   
     try {
@@ -12,7 +12,7 @@ const bcrypt = require('bcrypt');
       const user = await User.findOne({ where: { email }});
   
       if (!user) {
-        return res.status(404).send(`Email not registered: ${email}!`);
+        return res.status(404).json(`Email not registered: ${email}!`);
       }
   
    
@@ -20,13 +20,14 @@ const bcrypt = require('bcrypt');
       const match = await bcrypt.compare(password, user.password);
 
       if(!match){
-        return res.status(400).send('Invalid password');
+        return res.status(400).json('Invalid password');
       }
 
       return res.json({ access: true });
   
     } catch (error) {
-      return res.status(500).send(error.message); 
+      return res.status(500).json({ error: error.message });
+
     }
   }
   
