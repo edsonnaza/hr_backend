@@ -2,11 +2,11 @@ const {User} =require('../../DB_connection');
 const bcrypt = require('bcrypt');
 
 const addNewUser = async (req, res)=> {
-    const { email, password } = req.body;
+    const { email, password,user_name, user_lastname } = req.body;
    // return res.send(email);
   
-    if (!email || !password) {
-      return res.status(400).send(`Faltan datos, email: ${req.body.email} o password:${password}`); 
+    if (!email || !password || !user_name || !user_lastname) {
+      return res.status(400).send(`Empty's fields, email: ${req.body.email} or password:${password} or name:${user_name} or lastname:${user_lastname}`); 
     }
   
     try {
@@ -17,6 +17,8 @@ const addNewUser = async (req, res)=> {
       const user = await User.create({
         id:null,
         email, 
+        user_name,
+        user_lastname,
         password: hashedPassword
       });
   

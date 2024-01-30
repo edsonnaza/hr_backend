@@ -23,7 +23,9 @@ const bcrypt = require('bcrypt');
         return res.status(400).json('Invalid password');
       }
 
-      return res.json({ access: true });
+     
+
+      return res.json({email:user.email,user_name:user.user_name,user_lastname:user.user_lastname, isLogin: true });
   
     } catch (error) {
       return res.status(500).json({ error: error.message });
