@@ -7,7 +7,7 @@ const { getAllUsers } = require('../controller/auth/getAllUsers');
 const router = Router();
 
 router.get('/', function(req,res){
-    res.send('Wellcome to Human Resources World Managment');
+    res.send('Wellcome to Human Resources Managment');
 });
 
 // Login Route
