@@ -4,17 +4,17 @@ const { DB_USER, DB_PASSWORD, DB_HOST,DB_NAME,DB_DEPLOY } = process.env;
 const UserModel = require('./models/auth/User');
  const sequelize = new Sequelize(
      
-    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-   //DB_DEPLOY,
+   // `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+   DB_DEPLOY,
    { logging: false, 
      native: false,
      alter: true,
      force:false,
-    //  dialectOptions: {
-    //     ssl:{
-    //         require:true,
-    //     },
-    //  },
+     dialectOptions: {
+        ssl:{
+            require:true,
+        },
+     },
    }
 );
 
